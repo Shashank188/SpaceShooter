@@ -12,7 +12,8 @@ import { useGameStore } from '@/stores/game';
 
 const { state: gameState, resetGame } = useGameStore();
 const state = reactive({
-  isStartGame: true
+  isStartGame: true,
+  lastScore: 0
 })
 
 
@@ -23,6 +24,7 @@ function onPlay() {
 watch(() => gameState.lives, () => {
   if (!gameState.lives) {
     state.isStartGame = true;
+    state.lastScore = gameState.score;
     resetGame();
   }
 });
@@ -34,7 +36,7 @@ watch(() => gameState.lives, () => {
   <main>
     <BackGround />
     <div class="game-container">
-      <StartGame @on-play="onPlay" v-if="state.isStartGame" />
+      <StartGame @on-play="onPlay" v-if="state.isStartGame" :lastScore="state.lastScore" />
       <GamePlay v-else></GamePlay>
       <ScoreCard v-if="!state.isStartGame"></ScoreCard>
     </div>
