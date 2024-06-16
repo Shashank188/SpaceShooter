@@ -37,7 +37,7 @@ function initCanvas() {
 }
 function initSpaceShip() {
     state.spaceShip = new Ship({
-        x: gamePlay.value.width / 2, y: gamePlay.value.height - 100, context: state.context,
+        x: window.innerWidth / 2, y: window.innerHeight - 100, context: state.context,
         stage: gamePlay.value,
         laserTickReset: () => state.laserTick = 0
     });
@@ -54,8 +54,8 @@ function moveSpaceShip() {
 
     if (xPos < 0)
         xPos = 0;
-    else if (xPos > gamePlay.value.width - 80)
-        xPos = gamePlay.value.width - 80;
+    else if (xPos > window.innerWidth - 80)
+        xPos = window.innerWidth - 80;
 
 
     if (state.spaceShip.active) {
@@ -72,7 +72,7 @@ function drawLasers() {
                 color: 'white',
                 x: state.spaceShip.x,
                 context: state.context,
-                y: gamePlay.value.height - 100,
+                y: window.innerHeight - 100,
             });
             state.lasers.push(laser);
         }
@@ -115,7 +115,7 @@ function render() {
 
     if (state.obstacles.length) {
         state.obstacles = state.obstacles.filter(obstacle => {
-            let visible = obstacle.y < gamePlay.value.height;
+            let visible = obstacle.y < window.innerHeight;
             let active = obstacle.active === true;
             return visible && active;
         });

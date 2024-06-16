@@ -20,7 +20,7 @@ function onPlay() {
   state.isStartGame = false;
 }
 
-watch(() => gameState.lives, (newVal) => {
+watch(() => gameState.lives, () => {
   if (!gameState.lives) {
     state.isStartGame = true;
     resetGame();
