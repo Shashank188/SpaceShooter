@@ -13,7 +13,7 @@ Laser.prototype.update = function (y) {
 
 Laser.prototype.draw = function () {
     this.ctx.save();
-     this.ctx.fillStyle = 'white';
+    this.ctx.fillStyle = 'white';
     this.ctx.beginPath();
     this.ctx.rect(this.x, this.y, this.width, this.height);
     this.ctx.closePath();

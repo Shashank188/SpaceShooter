@@ -16,7 +16,9 @@ const state = reactive({
     obstacles: [],
     tick: 0,
     laserTick: 0,
-    enemySeedFrameInterval: 100
+    enemySeedFrameInterval: 100,
+    explosionSound: new Audio('explosion.mp3')
+
 })
 
 
@@ -137,6 +139,7 @@ function handleShipCollision() {
             if (collision && state.spaceShip.active) {
                 state.spaceShip.active = false;
                 state.spaceShip.explode();
+                state.explosionSound.play();
                 setTimeout(() => {
                     updateSpeed(1);
                     state.spaceShip.active = true;
@@ -157,6 +160,7 @@ function handleLaserCollision() {
                 state.lasers = []
                 updateScore(gameState.score + 100)
                 enemy.explode();
+                state.explosionSound.play();
                 updateSpeed(gameState.speedMultiplier * 1.1)
             }
         }

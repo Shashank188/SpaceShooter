@@ -60,7 +60,9 @@ Ship.prototype.onKeyDown = function (e) {
         if (e.keyCode == 32 && !this.shooting) {
             this.shooting = true;
             this.laserTickReset()
-            
+            const laser = new Audio('laser.mp3');
+            laser.play();
+
         }
     }
 
