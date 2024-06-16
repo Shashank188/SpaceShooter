@@ -30,6 +30,17 @@ Ship.prototype.draw = function () {
     this.ctx.restore();
 }
 
+Ship.prototype.explode = function () {
+    this.ctx.save();
+    const spaceShip = new Image();
+    spaceShip.onload = () => {
+        // this.ctx.clearRect(0, 0, this.stage.width, this.stage.height);
+        this.ctx.drawImage(spaceShip, this.x, this.y)
+    }
+    spaceShip.src = "./explode.png";
+    this.ctx.restore();
+}
+
 Ship.prototype.render = function () {
     this.ctx.save();
     const spaceShip = new Image();

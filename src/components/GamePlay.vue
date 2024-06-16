@@ -101,7 +101,7 @@ function addObstacle() {
 function render() {
 
     if (!state.obstacles.length) state.spaceShip.render()
-    
+
     addObstacle();
     moveSpaceShip();
     drawLasers();
@@ -136,6 +136,7 @@ function handleShipCollision() {
             let collision = hitTest(state.spaceShip, obstacle);
             if (collision && state.spaceShip.active) {
                 state.spaceShip.active = false;
+                state.spaceShip.explode();
                 setTimeout(() => {
                     updateSpeed(1);
                     state.spaceShip.active = true;
@@ -155,6 +156,7 @@ function handleLaserCollision() {
                 enemy.active = false;
                 state.lasers = []
                 updateScore(gameState.score + 100)
+                enemy.explode();
                 updateSpeed(gameState.speedMultiplier * 1.1)
             }
         }
