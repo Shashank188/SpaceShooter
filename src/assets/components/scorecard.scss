@@ -1,0 +1,9 @@
+.score-card-container {
+    position: absolute;
+    z-index: 1000;
+    height: 50px;
+    width: 200px;
+    color: $color-primary;
+    bottom: 0;
+    right: 0;
+}

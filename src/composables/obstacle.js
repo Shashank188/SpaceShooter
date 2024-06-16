@@ -1,12 +1,15 @@
 import { randomBetween } from '@/utils/index.js';
 export function Obstacle(options) {
     const imgSrc = randomBetween(0, 1) > 0.5 ? 'asteroid' : 'enemy';
+    this.width = 80;
+    this.height = 40;
+    this.active = true;
     this.y = options.y
     this.ctx = options.context;
     this.stage = options.stage;
-    this.speed = 10;
+    this.speed = options.speed;
     this.x = randomBetween(0, this.stage.width);
-    this.imgSrc= imgSrc;
+    this.imgSrc = imgSrc;
 
 
 }
@@ -22,10 +25,9 @@ Obstacle.prototype.draw = function () {
     const astroid = new Image();
     astroid.onload = () => {
         this.ctx.clearRect(0, 0, this.stage.width, this.stage.height);
-
         this.ctx.drawImage(astroid, this.x, this.y)
     }
-    
+
     astroid.src = `${this.imgSrc}.svg`;
     this.ctx.restore();
 }

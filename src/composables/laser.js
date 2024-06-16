@@ -4,6 +4,7 @@ export function Laser(options) {
     this.width = 6;
     this.height = 20;
     this.ctx = options.context;
+    this.active = true;
 }
 
 Laser.prototype.update = function (y) {

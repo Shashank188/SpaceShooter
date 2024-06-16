@@ -5,20 +5,28 @@ export const useGameStore = defineStore('game', () => {
 
 
   let state = reactive({
-    speed: 10,
+    speedMultiplier: 1,
     score: 0,
-    lives: 5,
+    lives: 3,
     position: 50,
     rate: 1
   })
 
   function updateSpeed(speed) {
-    state.speed = speed;
+    state.speedMultiplier = speed;
   }
 
-  function updateState(newState) {
-    state = newState;
+  function updateScore(score) {
+    state.score = score;
+  }
+  function updateLives(lives) {
+    state.lives = lives;
+  }
+  function resetGame() {
+    state.score = 0;
+    state.lives = 3;
+    state.speed = 10
   }
 
-  return { state, updateSpeed, updateState }
+  return { state, updateSpeed, updateLives, updateScore, resetGame }
 })

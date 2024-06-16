@@ -5,6 +5,10 @@ export function Ship(options) {
     this.right = false;
     this.ctx = options.context;
     this.stage = options.stage;
+    this.width = 80;
+    this.height = 80;
+    this.active = true;
+    this.laserTickReset = options.laserTickReset
 
     document.addEventListener('keydown', this.onKeyDown.bind(this));
     document.addEventListener('keyup', this.onKeyUp.bind(this));
@@ -26,12 +30,27 @@ Ship.prototype.draw = function () {
     this.ctx.restore();
 }
 
-Ship.prototype.onKeyDown = function (e) {
-    if (e.keyCode === 39) this.right = true;
-    else if (e.keyCode === 37) this.left = true;
+Ship.prototype.render = function () {
+    this.ctx.save();
+    const spaceShip = new Image();
+    spaceShip.onload = () => {
+        this.ctx.clearRect(0, 0, this.stage.width, this.stage.height);
+        this.ctx.drawImage(spaceShip, this.x, this.y)
+    }
+    spaceShip.src = "./spaceship.svg";
+    this.ctx.restore();
+}
 
-    if (e.keyCode == 32 && !this.shooting) {
-        this.shooting = true;
+Ship.prototype.onKeyDown = function (e) {
+    if (this.active) {
+        if (e.keyCode === 39) this.right = true;
+        else if (e.keyCode === 37) this.left = true;
+
+        if (e.keyCode == 32 && !this.shooting) {
+            this.shooting = true;
+            this.laserTickReset()
+            
+        }
     }
 
 }

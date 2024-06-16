@@ -35,13 +35,13 @@ function createAnimation() {
     for (var i = 0; i < 60; i++) {
         const x = Math.floor(Math.random() * window.innerWidth);
         const y = Math.floor(Math.random() * window.innerHeight);
-        state.stars.push(new Stars(x, y, gameState.speed));
+        state.stars.push(new Stars(x, y, 10 * gameState.speedMultiplier));
 
 
     }
 
     function render() {
-        requestAnimationFrame(render);
+         requestAnimationFrame(render);
         state.context.clearRect(0, 0, window.innerWidth, window.innerHeight);
         for (var i = 0; i < state.stars.length; i++) {
             state.stars[i].update();
