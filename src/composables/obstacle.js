@@ -8,7 +8,7 @@ export function Obstacle(options) {
     this.ctx = options.context;
     this.stage = options.stage;
     this.speed = options.speed;
-    this.x = randomBetween(0, this.stage.width);
+    this.x = randomBetween(0, window.innerWidth);
     // this.x = this.stage.width / 2 ;
     this.imgSrc = imgSrc;
 
