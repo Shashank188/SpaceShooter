@@ -28,7 +28,7 @@ function createBackground() {
     const { height, width } = backgroundCanvas.value;
     state.context.scale(dpi, dpi);
 
-    state.context.fillRect(0, 0, width, height);
+    // state.context.fillRect(0, 0, width, height);
 }
 
 function createAnimation() {
